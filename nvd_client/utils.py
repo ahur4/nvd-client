@@ -1,6 +1,6 @@
 import re
 from datetime import datetime
-from exceptions import InvalidDateFormatError, InvalidParametersError, InvalidCVEIDError
+from .exceptions import InvalidDateFormatError, InvalidParametersError, InvalidCVEIDError
 from typing import Optional, List
 
 

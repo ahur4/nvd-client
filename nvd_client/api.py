@@ -1,7 +1,7 @@
 import requests
 from typing import Dict, List, Optional, Union
-from utils import validate_and_convert_dates, validate_cve_id
-from logger import setup_logger
+from .utils import validate_and_convert_dates, validate_cve_id
+from .logger import setup_logger
 
 
 class NvdApi:
