@@ -4,12 +4,12 @@ long_description = open('README.md', 'r').read()
 
 setup(
     name="nvd-client",
-    version="1.0.0",
+    version="1.0.1",
     description="A Python client for interacting with the National Vulnerability Database (NVD) API to fetch CVE data.",
     author="Ahur4",
     author_email="ahur4.rahmani@gmail.com",
     url="https://github.com/ahur4/nvd-client",
-    packages=find_packages(),
+    packages=find_packages(include=['nvd_client', 'nvd_client.*']),
     install_requires=[
         "certifi==2024.6.2",
         "charset-normalizer==3.3.2",
