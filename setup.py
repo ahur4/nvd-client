@@ -1,5 +1,7 @@
 from setuptools import setup, find_packages
 
+long_description = open('README.md', 'r').read()
+
 setup(
     name="nvd-client",
     version="1.0.0",
@@ -24,5 +26,7 @@ setup(
     keywords=[
         "vulnerability", "nvd", "national vulnerability database", "nvd-client", "nvd-client-api",
         "ahur4", "ahura rahmani", "redteam", "soc", "vulnerability assessment", "penetration testing"
-    ]
+    ],
+    long_description=long_description,
+    long_description_content_type='text/markdown',
 )
