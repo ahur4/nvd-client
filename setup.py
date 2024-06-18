@@ -1,0 +1,28 @@
+from setuptools import setup, find_packages
+
+setup(
+    name="nvd-client",
+    version="1.0.0",
+    description="A Python client for interacting with the National Vulnerability Database (NVD) API to fetch CVE data.",
+    author="Ahur4",
+    author_email="ahur4.rahmani@gmail.com",
+    url="https://github.com/ahur4/nvd-client",
+    packages=find_packages(),
+    install_requires=[
+        "certifi==2024.6.2",
+        "charset-normalizer==3.3.2",
+        "idna==3.7",
+        "requests==2.32.3",
+        "urllib3==2.2.1"
+    ],
+    classifiers=[
+        "Programming Language :: Python :: 3",
+        "License :: OSI Approved :: MIT License",
+        "Operating System :: OS Independent",
+    ],
+    python_requires='>=3.6',
+    keywords=[
+        "vulnerability", "nvd", "national vulnerability database", "nvd-client", "nvd-client-api",
+        "ahur4", "ahura rahmani", "redteam", "soc", "vulnerability assessment", "penetration testing"
+    ]
+)
