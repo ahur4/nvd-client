@@ -23,7 +23,7 @@ class NvdApi:
         """
         self.api_key: Optional[str] = api_key
         self.base_url: str = 'https://services.nvd.nist.gov/rest/json/cves/2.0'
-        self.logger = setup_logger('nvd-client', 'nvd_client.log')
+        self.logger = setup_logger('nvd_client', 'nvd_client.log')
 
     def __str__(self) -> str:
         """

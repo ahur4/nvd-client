@@ -24,7 +24,7 @@ setup(
     ],
     python_requires='>=3.6',
     keywords=[
-        "vulnerability", "nvd", "national vulnerability database", "nvd-client", "nvd-client-api",
+        "vulnerability", "nvd", "national vulnerability database", "nvd_client", "nvd_client-api",
         "ahur4", "ahura rahmani", "redteam", "soc", "vulnerability assessment", "penetration testing"
     ],
     long_description=long_description,

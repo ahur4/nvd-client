@@ -23,7 +23,7 @@ A Python client for interacting with the National Vulnerability Database (NVD) A
 You can install the package using pip:
 
 ```sh
-pip install nvd-client
+pip install nvd_client
 ```
 
 ## Usage
