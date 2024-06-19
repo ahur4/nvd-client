@@ -2,9 +2,8 @@
 # NVD API Client
 
 ![PyPI](https://img.shields.io/pypi/v/nvd-client)
-![Total Downloads](https://static.pepy.tech/personalized-badge/nvd-client?period=total&units=none&left_color=grey&right_color=blue&left_text=Total-PyPi-Downloads)
-![Monthly Downloads](https://static.pepy.tech/personalized-badge/nvd-client?period=month&units=none&left_color=grey&right_color=blue&left_text=Monthly-PyPi-Downloads)
-![Weekly Downloads](https://static.pepy.tech/personalized-badge/nvd-client?period=week&units=none&left_color=grey&right_color=blue&left_text=Weekly-PyPi-Downloads)
+![Daily Downloads](https://img.shields.io/pypi/dd/nvd-client)
+![Monthly Downloads](https://img.shields.io/pypi/dm/nvd-client)
 [![Telegram-Channel](https://img.shields.io/badge/Telegram--Channel-Ahura_Rahmani-blue)](https://t.me/Ahur4_Rahmani)
 
 
