@@ -1,7 +1,6 @@
 import requests
 from typing import Dict, List, Optional, Union
 from .utils import validate_and_convert_dates, validate_cve_id
-from .logger import setup_logger
 
 
 class NvdApi:
@@ -23,7 +22,6 @@ class NvdApi:
         """
         self.api_key: Optional[str] = api_key
         self.base_url: str = 'https://services.nvd.nist.gov/rest/json/cves/2.0'
-        self.logger = setup_logger('nvd_client', 'nvd_client.log')
 
     def __str__(self) -> str:
         """
@@ -63,22 +61,11 @@ class NvdApi:
             parameters = self._verifier(params or {})
             link = f"{self.base_url}?{parameters}"
             headers = {'apiKey': self.api_key} if self.api_key else {}
-            self.logger.info(f"Making request to {link}")
             response = requests.get(link, headers=headers)
             response.raise_for_status()
-            self.logger.info(f"Request successful: {response.status_code}")
             return response.json()
-        except requests.exceptions.Timeout as e:
-            self.logger.error(f"Timeout error: {e}")
-        except requests.exceptions.ConnectionError as e:
-            self.logger.error(f"Connection error: {e}")
-        except requests.exceptions.HTTPError as e:
-            self.logger.error(f"HTTP error occurred: {e}")
-        except requests.exceptions.RequestException as e:
-            self.logger.error(f"Request failed: {e}")
         except Exception as e:
-            self.logger.error(f"An unexpected error occurred: {e}")
-        return None
+            return None
 
     def get_all_cves(self, per_page: int = 2000, offset: int = 0) -> Optional[Dict[str, Union[str, int, List, Dict]]]:
         """
