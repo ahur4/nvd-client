@@ -1,5 +1,5 @@
 import requests
-from typing import Dict, List, Optional, Union
+from typing import Dict, List, Optional, Union, Any
 from .utils import validate_and_convert_dates, validate_cve_id
 
 
@@ -9,8 +9,6 @@ class NvdApi:
 
     Attributes:
         api_key (Optional[str]): The API key for authenticating requests.
-        base_url (str): The base URL for the NVD API.
-        logger (logging.Logger): Logger for the class.
     """
 
     def __init__(self, api_key: Optional[str] = None) -> None:
@@ -21,7 +19,8 @@ class NvdApi:
             api_key (Optional[str]): The API key for authenticating requests. Default is None.
         """
         self.api_key: Optional[str] = api_key
-        self.base_url: str = 'https://services.nvd.nist.gov/rest/json/cves/2.0'
+        self.base_url_cve: str = 'https://services.nvd.nist.gov/rest/json/cves/2.0'
+        self.base_url_cpe: str = 'https://services.nvd.nist.gov/rest/json/cpematch/2.0'
 
     def __str__(self) -> str:
         """
@@ -46,20 +45,24 @@ class NvdApi:
         return "&".join([f"{k}={v}" for k, v in params.items()])
 
     def _make_request(
-            self, params: Optional[Dict[str, Union[str, int]]] = None
+            self, params: Optional[Dict[str, Union[str, int]]] = None, type_of: str = "cve"
     ) -> Optional[Dict[str, Union[str, int, List, Dict]]]:
         """
         Make a request to the NVD API with the provided parameters.
 
         Args:
             params (Optional[Dict[str, Union[str, int]]]): The parameters for the API request. Default is None.
+            type_of (str): The parameters for the type of used api. default is cve.
 
         Returns: Optional[Dict[str, Union[str, int, List, Dict]]]: The JSON response from the API, or None if an
         error occurred.
         """
         try:
             parameters = self._verifier(params or {})
-            link = f"{self.base_url}?{parameters}"
+            if type_of == "cve":
+                link = f"{self.base_url_cve}?{parameters}"
+            else:
+                link = f"{self.base_url_cpe}?{parameters}"
             headers = {'apiKey': self.api_key} if self.api_key else {}
             response = requests.get(link, headers=headers)
             response.raise_for_status()
@@ -194,3 +197,26 @@ class NvdApi:
         parameters.update(resultsPerPage=per_page, startIndex=offset, cpeName=cpe_name)
 
         return self._make_request(params=parameters)
+
+    def get_cpes_by_cve(
+            self,
+            cve_id: str,
+            per_page: int = 500,
+            offset: int = 0,
+    ) -> Optional[Dict[str, Union[str, int, List, Dict]]]:
+        """
+        Fetch CPEs by CveId.
+
+        Args:
+            cve_id (str): The CVE ID to fetch.
+            per_page (int): The number of results per page. Default and Maximum is 500.
+            offset (int): The starting index for the results. Default is 0.
+
+        Returns: List[Union[Dict[str, Any], Any]]: The JSON response from the API, or None if an
+        error occurred.
+        """
+        if validate_cve_id(cve_id):
+            parameters = {}
+            parameters.update(resultsPerPage=per_page, startIndex=offset, cveId=cve_id)
+
+            return self._make_request(params=parameters, type_of="cpe")
