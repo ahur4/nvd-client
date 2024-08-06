@@ -1,6 +1,6 @@
 import requests
 from typing import Dict, List, Optional, Union, Any
-from .utils import validate_and_convert_dates, validate_cve_id
+from nvd_client.utils import validate_and_convert_dates, validate_cve_id
 
 
 class NvdApi:
@@ -63,6 +63,7 @@ class NvdApi:
                 link = f"{self.base_url_cve}?{parameters}"
             else:
                 link = f"{self.base_url_cpe}?{parameters}"
+            print(link)
             headers = {'apiKey': self.api_key} if self.api_key else {}
             response = requests.get(link, headers=headers)
             response.raise_for_status()
@@ -220,3 +221,25 @@ class NvdApi:
             parameters.update(resultsPerPage=per_page, startIndex=offset, cveId=cve_id)
 
             return self._make_request(params=parameters, type_of="cpe")
+
+    def get_cpes_by_criteria(
+            self,
+            criteria: str,
+            per_page: int = 500,
+            offset: int = 0,
+    ) -> Optional[Dict[str, Union[str, int, List, Dict]]]:
+        """
+        Fetch CPEs by CveId.
+
+        Args:
+            criteria (str): The Criteria to fetch.
+            per_page (int): The number of results per page. Default and Maximum is 500.
+            offset (int): The starting index for the results. Default is 0.
+
+        Returns: List[Union[Dict[str, Any], Any]]: The JSON response from the API, or None if an
+        error occurred.
+        """
+        parameters = {}
+        parameters.update(resultsPerPage=per_page, startIndex=offset, matchStringSearch=criteria)
+
+        return self._make_request(params=parameters, type_of="cpe")
