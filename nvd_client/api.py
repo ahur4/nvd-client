@@ -9,15 +9,18 @@ class NvdApi:
 
     Attributes:
         api_key (Optional[str]): The API key for authenticating requests.
+        api_key (Optional[str]): The Socks5 Proxy.
     """
 
-    def __init__(self, api_key: Optional[str] = None) -> None:
+    def __init__(self, api_key: Optional[str] = None, proxy: Optional[str] = None) -> None:
         """
         Initialize the NvdApi class.
 
         Args:
             api_key (Optional[str]): The API key for authenticating requests. Default is None.
+            api_key (Optional[str]): The Socks5 Proxy.
         """
+        self.proxy: Optional[str] = proxy
         self.api_key: Optional[str] = api_key
         self.base_url_cve: str = 'https://services.nvd.nist.gov/rest/json/cves/2.0'
         self.base_url_cpe: str = 'https://services.nvd.nist.gov/rest/json/cpematch/2.0'
@@ -65,7 +68,10 @@ class NvdApi:
                 link = f"{self.base_url_cpe}?{parameters}"
             print(link)
             headers = {'apiKey': self.api_key} if self.api_key else {}
-            response = requests.get(link, headers=headers)
+            if self.proxy:
+                response = requests.get(link, headers=headers, proxies={"http": self.proxy, "https": self.proxy})
+            else:
+                response = requests.get(link, headers=headers)
             response.raise_for_status()
             return response.json()
         except Exception as e:
