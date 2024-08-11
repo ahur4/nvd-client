@@ -50,7 +50,10 @@ class NvdApi:
         return "&".join([f"{k}={v}" for k, v in params.items()])
 
     def _make_request(
-            self, params: Optional[Dict[str, Union[str, int]]] = None, type_of: str = "cve"
+            self,
+            params: Optional[Dict[str, Union[str, int]]] = None,
+            type_of: str = "cve",
+            proxy: Optional[str] = None,
     ) -> Optional[Dict[str, Union[str, int, List, Dict]]]:
         """
         Make a request to the NVD API with the provided parameters.
@@ -71,6 +74,8 @@ class NvdApi:
             headers = {'apiKey': self.api_key} if self.api_key else {}
             if self.proxy:
                 response = requests.get(link, headers=headers, proxies={"http": self.proxy, "https": self.proxy})
+            elif proxy:
+                response = requests.get(link, headers=headers, proxies={"http": proxy, "https": proxy})
             else:
                 response = requests.get(link, headers=headers)
             response.raise_for_status()
@@ -78,13 +83,14 @@ class NvdApi:
         except Exception as e:
             return None
 
-    def get_all_cves(self, per_page: int = 2000, offset: int = 0) -> Optional[Dict[str, Union[str, int, List, Dict]]]:
+    def get_all_cves(self, per_page: int = 2000, offset: int = 0, proxy: Optional[str] = None) -> Optional[Dict[str, Union[str, int, List, Dict]]]:
         """
         Fetch all CVEs with pagination.
 
         Args:
             per_page (int): The number of results per page. Default is 2000.
             offset (int): The starting index for the results. Default is 0.
+            proxy (str): The proxy to use. Default is None.
 
         Returns: Optional[Dict[str, Union[str, int, List, Dict]]]: The JSON response from the API, or None if an
         error occurred.
@@ -93,20 +99,25 @@ class NvdApi:
             'resultsPerPage': per_page,
             'startIndex': offset
         }
+        if proxy:
+            return self._make_request(params=parameters, proxy=proxy)
         return self._make_request(params=parameters)
 
-    def get_cve_by_id(self, cve_id: str) -> Optional[Dict[str, Union[str, int, List, Dict]]]:
+    def get_cve_by_id(self, cve_id: str, proxy: Optional[str] = None) -> Optional[Dict[str, Union[str, int, List, Dict]]]:
         """
         Fetch a CVE by its ID.
 
         Args:
             cve_id (str): The CVE ID to fetch.
+            proxy (str): The proxy to use. Default is None.
 
         Returns: Optional[Dict[str, Union[str, int, List, Dict]]]: The JSON response from the API, or None if an
         error occurred.
         """
         if validate_cve_id(cve_id):
             parameters = {"cveId": cve_id}
+            if proxy:
+                return self._make_request(params=parameters, proxy=proxy)
             return self._make_request(params=parameters)
 
     def get_cve_by_date(
@@ -117,6 +128,7 @@ class NvdApi:
             publish_end_date: Optional[str] = None,
             modify_start_date: Optional[str] = None,
             modify_end_date: Optional[str] = None,
+            proxy: Optional[str] = None,
     ) -> Optional[Dict[str, Union[str, int, List, Dict]]]:
         """
         Fetch CVEs by publication or modification date.
@@ -128,6 +140,7 @@ class NvdApi:
             publish_end_date (Optional[str]): The end date for the publication date range. Default is None.
             modify_start_date (Optional[str]): The start date for the modification date range. Default is None.
             modify_end_date (Optional[str]): The end date for the modification date range. Default is None.
+            proxy (str): The proxy to use. Default is None.
 
         Returns: Optional[Dict[str, Union[str, int, List, Dict]]]: The JSON response from the API, or None if an
         error occurred.
@@ -155,6 +168,8 @@ class NvdApi:
         # Add more parameters as needed
         parameters.update(resultsPerPage=per_page, startIndex=offset)
 
+        if proxy:
+            return self._make_request(params=parameters, proxy=proxy)
         return self._make_request(params=parameters)
 
     def get_cve_by_cpe(
@@ -165,7 +180,8 @@ class NvdApi:
             publish_start_date: Optional[str] = None,
             publish_end_date: Optional[str] = None,
             modify_start_date: Optional[str] = None,
-            modify_end_date: Optional[str] = None
+            modify_end_date: Optional[str] = None,
+            proxy: Optional[str] = None,
     ) -> Optional[Dict[str, Union[str, int, List, Dict]]]:
         """
         Fetch CVEs by CpeId.
@@ -178,6 +194,7 @@ class NvdApi:
             publish_end_date (Optional[str]): The end date for the publication date range. Default is None.
             modify_start_date (Optional[str]): The start date for the modification date range. Default is None.
             modify_end_date (Optional[str]): The end date for the modification date range. Default is None.
+            proxy (str): The proxy to use. Default is None.
 
         Returns: Optional[Dict[str, Union[str, int, List, Dict]]]: The JSON response from the API, or None if an
         error occurred.
@@ -204,6 +221,8 @@ class NvdApi:
 
         parameters.update(resultsPerPage=per_page, startIndex=offset, cpeName=cpe_name)
 
+        if proxy:
+            return self._make_request(params=parameters, proxy=proxy)
         return self._make_request(params=parameters)
 
     def get_cpes_by_cve(
@@ -211,6 +230,7 @@ class NvdApi:
             cve_id: str,
             per_page: int = 500,
             offset: int = 0,
+            proxy: Optional[str] = None,
     ) -> Optional[Dict[str, Union[str, int, List, Dict]]]:
         """
         Fetch CPEs by CveId.
@@ -219,6 +239,7 @@ class NvdApi:
             cve_id (str): The CVE ID to fetch.
             per_page (int): The number of results per page. Default and Maximum is 500.
             offset (int): The starting index for the results. Default is 0.
+            proxy (str): The proxy to use. Default is None.
 
         Returns: List[Union[Dict[str, Any], Any]]: The JSON response from the API, or None if an
         error occurred.
@@ -227,6 +248,8 @@ class NvdApi:
             parameters = {}
             parameters.update(resultsPerPage=per_page, startIndex=offset, cveId=cve_id)
 
+            if proxy:
+                return self._make_request(params=parameters, type_of="cpe", proxy=proxy)
             return self._make_request(params=parameters, type_of="cpe")
 
     def get_cpes_by_criteria(
@@ -234,6 +257,7 @@ class NvdApi:
             criteria: str,
             per_page: int = 500,
             offset: int = 0,
+            proxy: Optional[str] = None,
     ) -> Optional[Dict[str, Union[str, int, List, Dict]]]:
         """
         Fetch CPEs by CveId.
@@ -242,6 +266,7 @@ class NvdApi:
             criteria (str): The Criteria to fetch.
             per_page (int): The number of results per page. Default and Maximum is 500.
             offset (int): The starting index for the results. Default is 0.
+            proxy (str): The proxy to use. Default is None.
 
         Returns: List[Union[Dict[str, Any], Any]]: The JSON response from the API, or None if an
         error occurred.
@@ -249,6 +274,8 @@ class NvdApi:
         parameters = {}
         parameters.update(resultsPerPage=per_page, startIndex=offset, matchStringSearch=criteria)
 
+        if proxy:
+            return self._make_request(params=parameters, type_of="cpe", proxy=proxy)
         return self._make_request(params=parameters, type_of="cpe")
 
     def get_cpes_by_criteria_name_id(
@@ -256,6 +283,7 @@ class NvdApi:
             criteria_name_id: str,
             per_page: int = 500,
             offset: int = 0,
+            proxy: Optional[str] = None,
     ) -> Optional[Dict[str, Union[str, int, List, Dict]]]:
         """
         Fetch CPEs by CveId.
@@ -264,6 +292,7 @@ class NvdApi:
             criteria_name_id (str): The Criteria Name ID to fetch.
             per_page (int): The number of results per page. Default and Maximum is 500.
             offset (int): The starting index for the results. Default is 0.
+            proxy (str): The proxy to use. Default is None.
 
         Returns: List[Union[Dict[str, Any], Any]]: The JSON response from the API, or None if an
         error occurred.
@@ -271,4 +300,6 @@ class NvdApi:
         parameters = {}
         parameters.update(resultsPerPage=per_page, startIndex=offset, matchCriteriaId=criteria_name_id)
 
+        if proxy:
+            return self._make_request(params=parameters, type_of="cpe", proxy=proxy)
         return self._make_request(params=parameters, type_of="cpe")
