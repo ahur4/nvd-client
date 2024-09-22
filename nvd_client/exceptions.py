@@ -4,7 +4,7 @@ from typing import List
 class InvalidDateFormatError(Exception):
     """Exception raised for errors in the input date format."""
 
-    def __init__(self, date_str, message="Invalid date format. Please use YYYY-MM-DD."):
+    def __init__(self, date_str, message="Invalid date format. date type must be datetime obj."):
         self.date_str = date_str
         self.message = message
         super().__init__(self.message)
