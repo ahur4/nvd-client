@@ -29,6 +29,7 @@ pip install nvd_client
 
 ```python
 from nvd_client import NvdApi
+from datetime import datetime, timedelta
 
 # Initialize the API client
 api_key = "your_api_key_here"
@@ -46,8 +47,8 @@ print(cve)
 cves_by_date = nvd_api.get_cve_by_date(
     per_page=100,
     offset=0,
-    publish_start_date="2021-01-01",
-    publish_end_date="2021-12-31"
+    publish_start_date=datetime.now() - timedelta(days=2),
+    publish_end_date=datetime.now()
 )
 print(cves_by_date)
 
