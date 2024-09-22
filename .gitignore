@@ -8,6 +8,7 @@
 build
 dist
 nvd_client.egg-info
+test.py
 
 # User-specific stuff
 .idea/**/workspace.xml
