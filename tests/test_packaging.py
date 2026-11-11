@@ -3,7 +3,7 @@
 import subprocess
 import sys
 import zipfile
-from importlib.metadata import requires, version
+from importlib.metadata import metadata, requires, version
 from pathlib import Path
 
 import nvd_client
@@ -11,6 +11,22 @@ from nvd_client import CveRecord, NvdApi, NvdConfig
 
 ROOT = Path(__file__).resolve().parents[1]
 PACKAGE = Path(nvd_client.__file__).resolve().parent
+
+
+def test_project_urls_and_docs_extra() -> None:
+    meta = metadata("nvd-client")
+    urls = meta.get_all("Project-URL") or []
+    assert "Documentation, https://ahur4.github.io/nvd-client/" in urls
+    assert "Homepage, https://github.com/ahur4/nvd-client" in urls
+    assert "Source, https://github.com/ahur4/nvd-client" in urls
+    assert "Repository, https://github.com/ahur4/nvd-client" in urls
+    assert "Issues, https://github.com/ahur4/nvd-client/issues" in urls
+    assert "Changelog, https://github.com/ahur4/nvd-client/blob/main/CHANGELOG.md" in urls
+    extras = meta.get_all("Provides-Extra") or []
+    assert "docs" in extras
+    requires_dist = meta.get_all("Requires-Dist") or []
+    assert any("mkdocs-material" in item and 'extra == "docs"' in item for item in requires_dist)
+    assert any("mkdocstrings" in item and 'extra == "docs"' in item for item in requires_dist)
 
 
 def test_import_succeeds_without_pytz() -> None:

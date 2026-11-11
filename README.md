@@ -5,16 +5,20 @@ Typed Python client for the National Vulnerability Database CVE and CPE Match AP
 [![PyPI](https://img.shields.io/pypi/v/nvd-client)](https://pypi.org/project/nvd-client/)
 [![Python 3.10–3.14](https://img.shields.io/badge/python-3.10%20%7C%203.11%20%7C%203.12%20%7C%203.13%20%7C%203.14-3776AB)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/github/license/ahur4/nvd-client)](https://github.com/ahur4/nvd-client/blob/main/LICENSE)
-[![CI](https://img.shields.io/github/actions/workflow/status/ahur4/nvd-client/ci.yml?branch=cursor/modernize-nvd-client-2b07&label=CI)](https://github.com/ahur4/nvd-client/actions/workflows/ci.yml)
+[![CI](https://img.shields.io/github/actions/workflow/status/ahur4/nvd-client/ci.yml?branch=main&label=CI)](https://github.com/ahur4/nvd-client/actions/workflows/ci.yml)
+[![Documentation](https://img.shields.io/badge/docs-mkdocs-0A7AAA)](https://ahur4.github.io/nvd-client/)
+
+**Documentation:** <https://ahur4.github.io/nvd-client/>
 
 The [National Vulnerability Database](https://nvd.nist.gov/) is NIST's repository of publicly disclosed vulnerabilities. Each record is a CVE, with descriptions, references, CVSS scores, weaknesses, and the CPE configurations that say which products are affected. `nvd-client` calls the NVD REST API 2.0 and returns those documents as pydantic models.
 
 Use it when a vulnerability scanner, asset inventory, or research notebook needs CVE or CPE match data and should not parse raw JSON by hand. It is a read-only client. It does not submit data to NVD.
 
-This page describes **0.2.0**. The PyPI badge tracks the release that is published today, which may be older. Until 0.2.0 is on PyPI, install from a checkout of this repository (`pip install .`).
+This page describes **0.2.1**. The client behaves the same as 0.2.0; this release adds the documentation site and the PyPI project links. The PyPI badge tracks the release that is published today. Until 0.2.1 is published, `pip install nvd-client` installs 0.2.0.
 
 ## Contents
 
+- [Documentation](https://ahur4.github.io/nvd-client/)
 - [Installation](#installation)
 - [Quickstart](#quickstart)
 - [Configuration](#configuration)
@@ -388,10 +392,19 @@ mypy --strict nvd_client
 pytest
 ```
 
-Tests mock HTTP. They do not call NVD. GitHub Actions runs the same checks on Python 3.10 through 3.14.
+Documentation site:
+
+```console
+pip install -e ".[docs]"
+mkdocs build --strict
+mkdocs serve
+```
+
+Tests mock HTTP. They do not call NVD. GitHub Actions runs the same checks on Python 3.10 through 3.14, and runs `mkdocs build --strict` on pull requests. Pushes to `main` publish the site to GitHub Pages. The Pages source in the repository settings has to be **GitHub Actions** before that first deploy can succeed.
 
 ## Further reading
 
+- [Documentation](https://ahur4.github.io/nvd-client/)
 - [NVD API quick start](https://nvd.nist.gov/developers/start-here), including the rate limits
 - [CVE API](https://nvd.nist.gov/developers/vulnerabilities)
 - [CPE and CPE Match APIs](https://nvd.nist.gov/developers/products)

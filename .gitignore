@@ -133,6 +133,8 @@ __pycache__/
 .ruff_cache/
 .coverage
 htmlcov/
+site/
+.cache/
 
 
 # End of https://www.toptal.com/developers/gitignore/api/pycharm+all,visualstudiocode,virtualenv

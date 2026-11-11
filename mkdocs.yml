@@ -1,0 +1,125 @@
+site_name: nvd-client
+site_description: A typed Python client for the NVD CVE and CPE Match APIs (version 2.0).
+site_url: https://ahur4.github.io/nvd-client/
+site_author: Ahur4
+repo_url: https://github.com/ahur4/nvd-client
+repo_name: ahur4/nvd-client
+edit_uri: edit/main/docs/
+copyright: Copyright &copy; 2024 Ahur4
+
+strict: true
+
+hooks:
+  - docs/hooks.py
+
+watch:
+  - nvd_client
+  - CHANGELOG.md
+
+nav:
+  - Home: index.md
+  - Quickstart: quickstart.md
+  - Configuration: configuration.md
+  - Data models: models.md
+  - Error handling: errors.md
+  - Retries and rate limiting: retries.md
+  - API reference:
+      - Overview: reference/index.md
+      - nvd_client.api: reference/api.md
+      - nvd_client.config: reference/config.md
+      - nvd_client.models: reference/models.md
+      - nvd_client.exceptions: reference/exceptions.md
+      - nvd_client.utils: reference/utils.md
+  - Migrating from 0.1.x: migrating.md
+  - Changelog: changelog.md
+
+theme:
+  name: material
+  language: en
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.expand
+    - navigation.tracking
+    - navigation.top
+    - navigation.footer
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - toc.follow
+  icon:
+    repo: fontawesome/brands/github
+
+plugins:
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+          inventories:
+            - https://docs.python.org/3/objects.inv
+            - https://docs.pydantic.dev/latest/objects.inv
+          options:
+            docstring_style: sphinx
+            docstring_section_style: list
+            members_order: source
+            heading_level: 2
+            show_root_heading: false
+            show_root_full_path: true
+            show_source: false
+            show_bases: true
+            show_symbol_type_heading: true
+            show_symbol_type_toc: true
+            show_signature_annotations: true
+            separate_signature: true
+            signature_crossrefs: true
+            merge_init_into_class: true
+            inherited_members: true
+            show_if_no_docstring: true
+            summary: true
+            filters:
+              - "!^_[^_]"
+              - "!^__post_init__$"
+              - "!^__repr__$"
+              - "!^__str__$"
+              - "!^__enter__$"
+              - "!^__exit__$"
+              - "!^model_config$"
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets:
+      base_path:
+        - .
+      check_paths: true
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/ahur4/nvd-client
