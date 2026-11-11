@@ -1,0 +1,77 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "nvd-client"
+version = "0.2.0"
+description = "A typed Python client for the NVD CVE and CPE Match APIs (version 2.0)."
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "Ahur4", email = "ahur4.rahmani@gmail.com" }]
+keywords = [
+    "vulnerability",
+    "nvd",
+    "cve",
+    "national vulnerability database",
+    "nvd-client",
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Operating System :: OS Independent",
+    "Typing :: Typed",
+    "Topic :: Security",
+]
+dependencies = [
+    "requests>=2.33.0",
+    "urllib3>=2.8.0,<3",
+    "idna>=3.7,<4",
+    "pydantic>=2.4,<3",
+]
+
+[project.optional-dependencies]
+socks = ["PySocks>=1.7.1"]
+dev = [
+    "pytest>=8.0",
+    "mypy>=1.13",
+    "ruff>=0.8",
+]
+
+[project.urls]
+Homepage = "https://github.com/ahur4/nvd-client"
+Repository = "https://github.com/ahur4/nvd-client"
+Changelog = "https://github.com/ahur4/nvd-client/blob/main/CHANGELOG.md"
+
+[tool.setuptools.packages.find]
+include = ["nvd_client*"]
+
+[tool.setuptools.package-data]
+nvd_client = ["py.typed"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+target-version = "py310"
+line-length = 100
+src = ["nvd_client", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM", "RUF", "C4"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["nvd_client"]
+
+[tool.mypy]
+python_version = "3.10"
+strict = true
+packages = ["nvd_client"]
+plugins = ["pydantic.mypy"]
+warn_unused_ignores = true
