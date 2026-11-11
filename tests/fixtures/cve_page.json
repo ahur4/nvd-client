@@ -1,0 +1,219 @@
+{
+  "resultsPerPage": 1,
+  "startIndex": 0,
+  "totalResults": 42,
+  "format": "NVD_CVE",
+  "version": "2.0",
+  "timestamp": "2024-06-03T00:00:00.000+00:00",
+  "vulnerabilities": [
+    {
+      "cve": {
+        "id": "CVE-2024-30078",
+        "sourceIdentifier": "secure@microsoft.com",
+        "published": "2024-06-01T12:00:00.000",
+        "lastModified": "2024-06-02T15:30:00.123Z",
+        "vulnStatus": "Analyzed",
+        "evaluatorComment": "NVD analysis note.",
+        "evaluatorSolution": "Apply the vendor update.",
+        "evaluatorImpact": "Local attacker can execute code.",
+        "cisaExploitAdd": "2024-06-11",
+        "cisaActionDue": "2024-07-02",
+        "cisaRequiredAction": "Apply updates per vendor instructions.",
+        "cisaVulnerabilityName": "Microsoft Windows Wi-Fi Driver Remote Code Execution",
+        "cveTags": [
+          {
+            "sourceIdentifier": "cve@mitre.org",
+            "tags": ["disputed"]
+          }
+        ],
+        "descriptions": [
+          {"lang": "en", "value": "Windows Wi-Fi driver allows remote code execution."},
+          {"lang": "es", "value": "El controlador Wi-Fi de Windows permite la ejecucion remota de codigo."}
+        ],
+        "references": [
+          {
+            "url": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2024-30078",
+            "source": "secure@microsoft.com",
+            "tags": ["Vendor Advisory"]
+          },
+          {
+            "url": "https://example.com/writeup",
+            "source": "researcher@example.com"
+          }
+        ],
+        "metrics": {
+          "cvssMetricV40": [
+            {
+              "source": "secure@microsoft.com",
+              "type": "Secondary",
+              "cvssData": {
+                "version": "4.0",
+                "vectorString": "CVSS:4.0/AV:A/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:N/SI:N/SA:N",
+                "baseScore": 8.8,
+                "baseSeverity": "HIGH",
+                "attackVector": "ADJACENT",
+                "attackComplexity": "LOW",
+                "attackRequirements": "NONE",
+                "privilegesRequired": "NONE",
+                "userInteraction": "NONE",
+                "vulnConfidentialityImpact": "HIGH",
+                "vulnIntegrityImpact": "HIGH",
+                "vulnAvailabilityImpact": "HIGH",
+                "subConfidentialityImpact": "NONE",
+                "subIntegrityImpact": "NONE",
+                "subAvailabilityImpact": "NONE"
+              }
+            }
+          ],
+          "cvssMetricV31": [
+            {
+              "source": "nvd@nist.gov",
+              "type": "Primary",
+              "cvssData": {
+                "version": "3.1",
+                "vectorString": "CVSS:3.1/AV:A/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+                "attackVector": "ADJACENT_NETWORK",
+                "attackComplexity": "LOW",
+                "privilegesRequired": "NONE",
+                "userInteraction": "NONE",
+                "scope": "UNCHANGED",
+                "confidentialityImpact": "HIGH",
+                "integrityImpact": "HIGH",
+                "availabilityImpact": "HIGH",
+                "baseScore": 8.8,
+                "baseSeverity": "HIGH"
+              },
+              "exploitabilityScore": 2.8,
+              "impactScore": 5.9
+            }
+          ],
+          "cvssMetricV30": [
+            {
+              "source": "nvd@nist.gov",
+              "type": "Primary",
+              "cvssData": {
+                "version": "3.0",
+                "vectorString": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+                "attackVector": "NETWORK",
+                "attackComplexity": "LOW",
+                "privilegesRequired": "NONE",
+                "userInteraction": "NONE",
+                "scope": "UNCHANGED",
+                "confidentialityImpact": "HIGH",
+                "integrityImpact": "NONE",
+                "availabilityImpact": "NONE",
+                "baseScore": 7.5,
+                "baseSeverity": "HIGH"
+              },
+              "exploitabilityScore": 3.9,
+              "impactScore": 3.6
+            }
+          ],
+          "cvssMetricV2": [
+            {
+              "source": "nvd@nist.gov",
+              "type": "Primary",
+              "cvssData": {
+                "version": "2.0",
+                "vectorString": "AV:N/AC:L/Au:N/C:C/I:C/A:C",
+                "accessVector": "NETWORK",
+                "accessComplexity": "LOW",
+                "authentication": "NONE",
+                "confidentialityImpact": "COMPLETE",
+                "integrityImpact": "COMPLETE",
+                "availabilityImpact": "COMPLETE",
+                "baseScore": 10.0
+              },
+              "baseSeverity": "HIGH",
+              "exploitabilityScore": 10.0,
+              "impactScore": 10.0,
+              "acInsufInfo": false,
+              "obtainAllPrivilege": true,
+              "obtainUserPrivilege": false,
+              "obtainOtherPrivilege": false,
+              "userInteractionRequired": false
+            }
+          ],
+          "ssvcV203": [
+            {
+              "source": "7fec8d14-91ab-4e8d-b2f1-5c3a9f7d6210",
+              "ssvcData": {
+                "timestamp": "2024-06-12T21:14:25.618422Z",
+                "id": "CVE-2024-30078",
+                "options": [
+                  {"exploitation": "poc"},
+                  {"automatable": "yes"},
+                  {"technicalImpact": "total"}
+                ],
+                "role": "CISA Coordinator",
+                "version": "2.0.3"
+              }
+            }
+          ]
+        },
+        "weaknesses": [
+          {
+            "source": "nvd@nist.gov",
+            "type": "Primary",
+            "description": [
+              {"lang": "en", "value": "CWE-787"},
+              {"lang": "en", "value": "NVD-CWE-noinfo"}
+            ]
+          }
+        ],
+        "configurations": [
+          {
+            "operator": "AND",
+            "negate": false,
+            "nodes": [
+              {
+                "operator": "OR",
+                "negate": false,
+                "cpeMatch": [
+                  {
+                    "vulnerable": true,
+                    "criteria": "cpe:2.3:o:microsoft:windows_11_23h2:*:*:*:*:*:*:*:*",
+                    "matchCriteriaId": "AAAAAAAA-BBBB-CCCC-DDDD-EEEEEEEEEEEE",
+                    "versionStartIncluding": "10.0.22631",
+                    "versionEndExcluding": "10.0.22631.3737"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "vendorComments": [
+          {
+            "organization": "Microsoft",
+            "comment": "Fixed in the June cumulative update.",
+            "lastModified": "2024-06-11T00:00:00"
+          }
+        ],
+        "affected": [
+          {
+            "source": "secure@microsoft.com",
+            "affectedData": [
+              {
+                "vendor": "Microsoft",
+                "product": "Windows 11",
+                "platforms": ["x64"],
+                "defaultStatus": "unknown",
+                "programRoutines": [{"name": "wlan_ioctl"}],
+                "versions": [
+                  {
+                    "version": "10.0.22631",
+                    "status": "affected",
+                    "versionType": "custom",
+                    "lessThan": "10.0.22631.3737",
+                    "changes": [{"at": "10.0.22631.3737", "status": "unaffected"}]
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "futureField": "kept"
+      }
+    }
+  ]
+}
