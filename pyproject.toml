@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "nvd-client"
-version = "0.2.0"
+version = "0.2.1"
 description = "A typed Python client for the NVD CVE and CPE Match APIs (version 2.0)."
 readme = "README.md"
 requires-python = ">=3.10"
@@ -43,10 +43,17 @@ dev = [
     "mypy>=1.13",
     "ruff>=0.8",
 ]
+docs = [
+    "mkdocs-material>=9.5",
+    "mkdocstrings[python]>=0.26",
+]
 
 [project.urls]
+Documentation = "https://ahur4.github.io/nvd-client/"
 Homepage = "https://github.com/ahur4/nvd-client"
+Source = "https://github.com/ahur4/nvd-client"
 Repository = "https://github.com/ahur4/nvd-client"
+Issues = "https://github.com/ahur4/nvd-client/issues"
 Changelog = "https://github.com/ahur4/nvd-client/blob/main/CHANGELOG.md"
 
 [tool.setuptools.packages.find]

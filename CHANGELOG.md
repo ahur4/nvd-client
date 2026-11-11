@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.2.1
+
+Documentation release. No changes to client behavior.
+
+- Added a documentation site (MkDocs Material, with an API reference
+  generated from the docstrings) at <https://ahur4.github.io/nvd-client/>.
+  GitHub Actions builds it with `mkdocs build --strict` and deploys it
+  to GitHub Pages from `main`.
+- Added a `docs` extra: `pip install -e ".[docs]"`.
+- PyPI project URLs now include Documentation
+  (<https://ahur4.github.io/nvd-client/>), Homepage, Source, Repository,
+  Issues, and Changelog.
+
 ## 0.2.0
 
 This release makes the client match the NVD API 2.0, replaces raw dictionaries
