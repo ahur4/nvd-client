@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.2.2
+
+Documentation and metadata cleanup. No changes to client behavior.
+
+- Removed transient release-status notes from the README and the
+  documentation site.
+
 ## 0.2.1
 
 Documentation release. No changes to client behavior.

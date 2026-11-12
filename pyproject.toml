@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "nvd-client"
-version = "0.2.1"
+version = "0.2.2"
 description = "A typed Python client for the NVD CVE and CPE Match APIs (version 2.0)."
 readme = "README.md"
 requires-python = ">=3.10"
