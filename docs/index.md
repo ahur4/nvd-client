@@ -6,8 +6,6 @@ The National Vulnerability Database is NIST's repository of publicly disclosed v
 
 Use it when a vulnerability scanner, asset inventory, or research notebook needs CVE or CPE match data and should not parse raw JSON by hand. It is a read-only client. It does not submit data to NVD, and it does not walk result pages for you.
 
-This site describes **0.2.1**. That release adds this documentation. Client behavior is the 0.2.0 behavior.
-
 ## Install
 
 Python 3.10 or newer.
@@ -68,7 +66,7 @@ pip install -e ".[docs]"
 mkdocs serve
 ```
 
-`mkdocs build --strict` fails on warnings, including a broken nav link or a docstring cross-reference the API pages cannot resolve. GitHub Actions runs that command on every pull request. A push to `main` uploads the built `site/` directory and deploys it to GitHub Pages. The repository's Pages source has to be GitHub Actions before that deploy can succeed.
+`mkdocs build --strict` fails on warnings, including a broken nav link or a docstring cross-reference the API pages cannot resolve. GitHub Actions runs that command on every pull request. A push to `main` uploads the built `site/` directory and deploys it to GitHub Pages.
 
 The published URL is <https://ahur4.github.io/nvd-client/>.
 
