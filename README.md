@@ -14,8 +14,6 @@ The [National Vulnerability Database](https://nvd.nist.gov/) is NIST's repositor
 
 Use it when a vulnerability scanner, asset inventory, or research notebook needs CVE or CPE match data and should not parse raw JSON by hand. It is a read-only client. It does not submit data to NVD.
 
-This page describes **0.2.1**. The client behaves the same as 0.2.0; this release adds the documentation site and the PyPI project links. The PyPI badge tracks the release that is published today. Until 0.2.1 is published, `pip install nvd-client` installs 0.2.0.
-
 ## Contents
 
 - [Documentation](https://ahur4.github.io/nvd-client/)
@@ -400,7 +398,7 @@ mkdocs build --strict
 mkdocs serve
 ```
 
-Tests mock HTTP. They do not call NVD. GitHub Actions runs the same checks on Python 3.10 through 3.14, and runs `mkdocs build --strict` on pull requests. Pushes to `main` publish the site to GitHub Pages. The Pages source in the repository settings has to be **GitHub Actions** before that first deploy can succeed.
+Tests mock HTTP. They do not call NVD. GitHub Actions runs the same checks on Python 3.10 through 3.14, and runs `mkdocs build --strict` on pull requests. Pushes to `main` publish the site to GitHub Pages.
 
 ## Further reading
 
@@ -411,7 +409,5 @@ Tests mock HTTP. They do not call NVD. GitHub Actions runs the same checks on Py
 - [Request an API key](https://nvd.nist.gov/developers/request-an-api-key)
 - [Changelog](CHANGELOG.md)
 - [MIT license](LICENSE)
-
-There is no `CONTRIBUTING` guide in this repository.
 
 Maintained by [Ahur4](https://github.com/ahur4).

@@ -1,6 +1,6 @@
 # Migrating from 0.1.x
 
-0.2.0 changes the return types and stops hiding failed requests. The method names are the same. 0.2.1 adds this documentation site and the PyPI project URLs. It does not change those calls.
+0.2.0 changes the return types and stops hiding failed requests. The method names are the same.
 
 ```python
 # 0.1.x returned a dict, or None when the request failed.
@@ -50,4 +50,4 @@ Direct dependencies are lower bounds only. `urllib3` and `idna` are declared dir
 | pydantic | not used | `>=2.4,<3` |
 | PySocks | always, via `requests[socks]` | optional extra `socks` |
 
-The [changelog](changelog.md) is the release history, including the 0.2.1 documentation notes.
+The [changelog](changelog.md) is the release history.
